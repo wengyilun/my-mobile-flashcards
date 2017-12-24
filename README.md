@@ -1,1 +1,1 @@
-This is mobile flashcard app for android and ios.
+This is mobile flashcard apps for android and ios 
