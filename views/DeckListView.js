@@ -3,7 +3,7 @@
  */
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import { View, Text, StyleSheet, ScrollView,  } from 'react-native'
+import { View, Text, StyleSheet, ScrollView,  TouchableOpacity} from 'react-native'
 import Deck from '../components/Deck'
 import { getDecks } from '../utils/api'
 import {purple, white, gray} from '../utils/colors'
@@ -37,9 +37,14 @@ class DeckListView extends Component{
 			<ScrollView style={styles.container}>
 				<Text style={[styles.center, {fontSize: 30}]}>DECKS</Text>
 				{Object.keys(decks).map((deck) =>
-					<Deck key={deck} title={decks[deck].title} questions={decks[deck].questions} />)}
+					<TouchableOpacity
+						onPress={() => this.props.navigation.navigate(
+						'DeckDetailView', {entryId: deck})}>
+						<Deck key={deck} title={decks[deck].title} questions={decks[deck].questions} />
+					</TouchableOpacity>
+					)}
+
 			</ScrollView>
-			
 		)
 	}
 }

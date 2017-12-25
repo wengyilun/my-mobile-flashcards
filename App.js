@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { StyleSheet, Text, View, Platform,  } from 'react-native';
 import { getDecks } from './utils/helpers'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -7,6 +7,7 @@ import rootReducer from './reducers'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import DeckListView from './views/DeckListView'
 import NewDeckView from './views/NewDeckView'
+import DeckDetailView from './views/DeckDetailView'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import {purple, white} from './utils/colors'
 
@@ -46,9 +47,18 @@ const Tabs = TabNavigator({
 })
 
 const MainNavigator = StackNavigator({
-  Home: {
-    screen: Tabs
-  }
+    Home: {
+     screen: Tabs
+    },
+    DeckDetailView:{
+		screen: DeckDetailView,
+		navigationOptions: {
+			headerTintColor: white,
+			headerStyle:{
+				backgroundColor: purple
+			}
+		}
+    }
 })
 
 export default class App extends React.Component {
