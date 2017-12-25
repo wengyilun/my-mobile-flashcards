@@ -43,7 +43,6 @@ const Tabs = TabNavigator({
                   shadowOpacity: 1
           }
       }
-	
 })
 
 const MainNavigator = StackNavigator({
