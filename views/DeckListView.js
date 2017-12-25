@@ -3,11 +3,12 @@
  */
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView,  } from 'react-native'
 import Deck from '../components/Deck'
 import { getDecks } from '../utils/api'
 import {purple, white, gray} from '../utils/colors'
 import {receiveDecks } from '../actions'
+import {AppLoading } from 'expo'
 
 class DeckListView extends Component{
 	state = {
@@ -22,15 +23,23 @@ class DeckListView extends Component{
 		.then(({decks}) => {
 			console.log(decks)
 		})
+		.then(() => this.setState(() => ({ready: true})))
 	}
 	
 	render(){
+		const {decks} = this.props
+		const {ready} = this.state
+		
+		if(ready === false){
+			return <AppLoading/>
+		}
 		return(
-			<View style={styles.container}>
-				{/*<Text>{JSON.stringify(getDecks('JavaScript'))}</Text>*/}
-				<Deck title='React'
-				      cards={[{id: 0, question: 'What is?', answer:'It is '}]} />
-			</View>
+			<ScrollView style={styles.container}>
+				<Text style={[styles.center, {fontSize: 30}]}>DECKS</Text>
+				{Object.keys(decks).map((deck) =>
+					<Deck key={deck} title={decks[deck].title} questions={decks[deck].questions} />)}
+			</ScrollView>
+			
 		)
 	}
 }
@@ -39,12 +48,15 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 20,
-		backgroundColor: gray
+	},
+	center: {
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 })
-function mapStateToProps (decks) {
+function mapStateToProps (state) {
 	return {
-		decks
+		decks: state.decks
 	}
 }
 export default connect(mapStateToProps)(DeckListView)

@@ -56,7 +56,6 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(rootReducer)}>
           <View style={{flex: 1}}>
-            {/*<Text>{JSON.stringify(getDecks('JavaScript'))}</Text>*/}
             <MainNavigator/>
           </View>
       </Provider>
@@ -69,5 +68,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 40
   },
 });
