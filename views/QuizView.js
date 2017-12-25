@@ -13,9 +13,21 @@ class QuizView extends Component{
 		return(
 			<View>
 				<Text>QuizView</Text>
+				<Text>{JSON.stringify(this.props.parentDeck)}</Text>
 			</View>
 		)
 	}
 }
 
-export default connect()(QuizView)
+function mapStateToProps(state, {navigation}){
+	const {parentDeck} = navigation.state.params
+	
+	return {
+		parentDeck,
+		title: state.decks[parentDeck].title,
+		questions: state.decks[parentDeck].questions
+	}
+}
+
+
+export default connect(mapStateToProps)(QuizView)

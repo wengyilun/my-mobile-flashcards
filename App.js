@@ -8,6 +8,8 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import DeckListView from './views/DeckListView'
 import NewDeckView from './views/NewDeckView'
 import DeckDetailView from './views/DeckDetailView'
+import NewCardView from './views/NewCardView'
+import QuizView from './views/QuizView'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import {purple, white} from './utils/colors'
 
@@ -58,7 +60,25 @@ const MainNavigator = StackNavigator({
 				backgroundColor: purple
 			}
 		}
-    }
+    },
+    QuizView:{
+		screen: QuizView,
+		navigationOptions: {
+			headerTintColor: white,
+			headerStyle:{
+				backgroundColor: purple
+			}
+		}
+	},
+    NewCardView:{
+		screen: NewCardView,
+		navigationOptions: {
+			headerTintColor: white,
+			headerStyle:{
+				backgroundColor: purple
+			}
+		}
+	}
 })
 
 export default class App extends React.Component {

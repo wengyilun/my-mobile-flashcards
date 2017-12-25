@@ -16,16 +16,26 @@ class DeckDetailView extends Component{
 	// 		questions: key.questions
 	// 	}
 	// }
-
+	addCard = ()=> {
+		this.props.navigation.navigate(
+			'NewCardView', {parentDeck: this.props.entryId})
+	}
+	startQuiz = ()=> {
+		this.props.navigation.navigate(
+			'QuizView', {parentDeck: this.props.entryId})
+	}
 	render(){
 		const {title, questions} = this.props
 		return(
 			<View>
 				<Deck title={title} questions={questions}/>
-				<TextButton onPress={this.reset} style={[styles.textButton]}>
+				<TextButton
+					onPress={this.addCard}
+					style={[styles.textButton]}>
 					Add Card
 				</TextButton>
-				<TextButton onPress={this.reset}  style={styles.textButton}>
+				<TextButton onPress={this.startQuiz}
+				style={styles.textButton}>
 					Start Quiz
 				</TextButton>
 			</View>

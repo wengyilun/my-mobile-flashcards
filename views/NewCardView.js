@@ -10,9 +10,22 @@ class NewCardView extends Component{
 		return(
 			<View>
 				<Text>New Card View</Text>
+				<Text>{JSON.stringify(this.props.parentDeck)}</Text>
 			</View>
 		)
 	}
 }
 
-export default connect()(NewCardView)
+
+function mapStateToProps(state, {navigation}){
+	const {parentDeck} = navigation.state.params
+	
+	return {
+		parentDeck,
+		title: state.decks[parentDeck].title,
+		questions: state.decks[parentDeck].questions
+	}
+}
+
+
+export default connect(mapStateToProps)(NewCardView)
