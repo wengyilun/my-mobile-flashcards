@@ -3,10 +3,17 @@
  */
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import { View, Text, TextInput } from 'react-native'
+import {View, Text, TextInput, StyleSheet} from 'react-native'
 import TextButton from '../components/TextButton'
 import {addCardToDeck} from '../utils/api'
+import {purple, white, gray} from "../utils/colors";
 class NewCardView extends Component{
+	static navigationOptions = ({navigation}) => {
+		return {
+			headerBackTitle: navigation.state.params.entryId,
+			title:'Add Card'
+		}
+	}
 	state={
 		question: '',
 		answer:''
@@ -17,27 +24,62 @@ class NewCardView extends Component{
 			answer: this.state.answer,
 		})
 		this.props.goBack()
-		// this.props.navigation.navigate(
-		// 	'DeckDetailView', {entryId: this.props.parentDeck})
 	}
 	render(){
 		return(
 			<View>
 				<TextInput
+					style={styles.textInput}
 					placeholder="Enter the question"
-					onChangeText={(q) => this.setState({question: q})}
 				/>
 				<TextInput placeholder="Enter the answer"
+						   style={styles.textInput}
 						   onChangeText={(a) => this.setState({answer: a})}
 				/>
-				<TextButton onPress={this.addCard}>
+				<TextButton
+					style={styles.textButton}
+					onPress={this.addCard}>
 					Submit
 				</TextButton>
-				<Text>{JSON.stringify(this.props.parentDeck)}</Text>
 			</View>
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		padding: 20,
+	},
+	center: {
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	textInput:{
+		borderRadius:4,
+		marginTop:10,
+		marginRight: 20,
+		marginLeft: 20,
+		marginBottom: 10,
+		color: gray,
+		padding: 10,
+		textAlign: "center",
+		borderColor:gray,
+		height: 50,
+		borderWidth: 1
+	},
+	textButton:{
+		marginTop:20,
+		backgroundColor: purple,
+		borderRadius:10,
+		marginRight: 20,
+		marginLeft: 20,
+		marginBottom: 20,
+		color: white,
+		padding: 10,
+		textAlign: "center"
+	}
+})
 
 
 function mapStateToProps(state, {navigation}){

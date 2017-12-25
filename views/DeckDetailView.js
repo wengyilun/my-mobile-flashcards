@@ -9,6 +9,12 @@ import TextButton from '../components/TextButton'
 import Deck from '../components/Deck'
 
 class DeckDetailView extends Component{
+	static navigationOptions = ({navigation}) => {
+		return {
+			    headerBackTitle: navigation.state.params.entryId,
+		}
+	}
+
 	shouldComponentUpdate (nextProps){
 		return nextProps.decks !== null && !nextProps.decks
 	}

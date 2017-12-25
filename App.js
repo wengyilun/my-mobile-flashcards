@@ -50,7 +50,10 @@ const Tabs = TabNavigator({
 
 const MainNavigator = StackNavigator({
     Home: {
-     screen: Tabs
+     screen: Tabs,
+     navigationOptions: {
+		headerBackTitle:'Udacicards'
+	}
     },
     DeckDetailView:{
 		screen: DeckDetailView,
@@ -58,7 +61,7 @@ const MainNavigator = StackNavigator({
 			headerTintColor: white,
 			headerStyle:{
 				backgroundColor: purple
-			}
+			},
 		}
     },
     QuizView:{
@@ -67,7 +70,8 @@ const MainNavigator = StackNavigator({
 			headerTintColor: white,
 			headerStyle:{
 				backgroundColor: purple
-			}
+			},
+			// headerBackTitle:'Quiz'
 		}
 	},
     NewCardView:{
@@ -76,7 +80,8 @@ const MainNavigator = StackNavigator({
 			headerTintColor: white,
 			headerStyle:{
 				backgroundColor: purple
-			}
+			},
+			// headerBackTitle:'Add Card'
 		}
 	}
 })
