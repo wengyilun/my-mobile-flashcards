@@ -15,15 +15,27 @@ class DeckListView extends Component{
 		ready: false
 	}
 	
-	componentDidMount () {
+	fetchDecks(){
 		const {dispatch} = this.props
-		
 		getDecks()
 		.then((decks) => dispatch(receiveDecks(decks)))
 		.then(({decks}) => {
-			console.log(decks)
+			console.log('componentDidMount:decks',decks)
 		})
 		.then(() => this.setState(() => ({ready: true})))
+		.catch((error) => {
+			console.warn('Error getting decks: ', error)
+		})
+	}
+	
+	componentDidMount () {
+		this.fetchDecks()
+	}
+	
+	componentWillReceiveProps(nextProps){
+		// if(this.props.decks && this.props.decks !== nextProps){
+		// 	this.fetchDecks()
+		// }
 	}
 	
 	render(){
@@ -60,6 +72,7 @@ const styles = StyleSheet.create({
 	},
 })
 function mapStateToProps (state) {
+	console.log('deck hanged decks:',state.decks)
 	return {
 		decks: state.decks
 	}

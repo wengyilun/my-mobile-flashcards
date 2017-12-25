@@ -5,7 +5,7 @@
 import React from 'react'
 import { View, StyleSheet, AsyncStorage } from 'react-native'
 
-export function setDummyDecks(){
+export function setDummyDecks(deck){
 	const decks = {
 		React: {
 			title: 'React',
@@ -29,60 +29,6 @@ export function setDummyDecks(){
 				}
 			]
 		},
-		JavaScript2: {
-			title: 'JavaScript',
-			questions: [
-				{
-					question: 'What is a closure?',
-					answer: 'The combination of a function and the lexical environment within which that function was declared.'
-				}
-			]
-		},
-		JavaScript3: {
-			title: 'JavaScript',
-			questions: [
-				{
-					question: 'What is a closure?',
-					answer: 'The combination of a function and the lexical environment within which that function was declared.'
-				}
-			]
-		},
-		JavaScript4: {
-			title: 'JavaScript',
-			questions: [
-				{
-					question: 'What is a closure?',
-					answer: 'The combination of a function and the lexical environment within which that function was declared.'
-				}
-			]
-		},
-		JavaScript5: {
-			title: 'JavaScript',
-			questions: [
-				{
-					question: 'What is a closure?',
-					answer: 'The combination of a function and the lexical environment within which that function was declared.'
-				}
-			]
-		},
-		JavaScript6: {
-			title: 'JavaScript',
-			questions: [
-				{
-					question: 'What is a closure?',
-					answer: 'The combination of a function and the lexical environment within which that function was declared.'
-				}
-			]
-		},
-		JavaScript7: {
-			title: 'JavaScript',
-			questions: [
-				{
-					question: 'What is a closure?',
-					answer: 'The combination of a function and the lexical environment within which that function was declared.'
-				}
-			]
-		}
 	}
 	return typeof deck === 'undefined'
 		? decks

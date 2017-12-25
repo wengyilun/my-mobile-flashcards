@@ -9,13 +9,9 @@ import TextButton from '../components/TextButton'
 import Deck from '../components/Deck'
 
 class DeckDetailView extends Component{
-	// static navigationOptions = ({navigation}) => {
-	// 	const { key } = navigation.state.params
-	// 	return {
-	// 		title: key.title,
-	// 		questions: key.questions
-	// 	}
-	// }
+	shouldComponentUpdate (nextProps){
+		return nextProps.decks !== null && !nextProps.decks
+	}
 	addCard = ()=> {
 		this.props.navigation.navigate(
 			'NewCardView', {parentDeck: this.props.entryId})

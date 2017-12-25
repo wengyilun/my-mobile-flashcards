@@ -3,13 +3,36 @@
  */
 import React, {Component } from 'react'
 import {connect} from 'react-redux'
-import { View, Text } from 'react-native'
-
+import { View, Text, TextInput } from 'react-native'
+import TextButton from '../components/TextButton'
+import {addCardToDeck} from '../utils/api'
 class NewCardView extends Component{
+	state={
+		question: '',
+		answer:''
+	}
+	addCard = ()=>{
+		addCardToDeck(this.props.parentDeck, {
+			question: this.state.question,
+			answer: this.state.answer,
+		})
+		this.props.goBack()
+		// this.props.navigation.navigate(
+		// 	'DeckDetailView', {entryId: this.props.parentDeck})
+	}
 	render(){
 		return(
 			<View>
-				<Text>New Card View</Text>
+				<TextInput
+					placeholder="Enter the question"
+					onChangeText={(q) => this.setState({question: q})}
+				/>
+				<TextInput placeholder="Enter the answer"
+						   onChangeText={(a) => this.setState({answer: a})}
+				/>
+				<TextButton onPress={this.addCard}>
+					Submit
+				</TextButton>
 				<Text>{JSON.stringify(this.props.parentDeck)}</Text>
 			</View>
 		)
@@ -26,6 +49,12 @@ function mapStateToProps(state, {navigation}){
 		questions: state.decks[parentDeck].questions
 	}
 }
+function mapDispatchToProps (dispatch, { navigation }) {
+	// const { entryId } = navigation.state.params
+	
+	return {
+		goBack: () => navigation.goBack(),
+	}
+}
 
-
-export default connect(mapStateToProps)(NewCardView)
+export default connect(mapStateToProps, mapDispatchToProps)(NewCardView)
