@@ -1,23 +1,19 @@
 /**
  * Created by mbp on 24/12/2017.
  */
-export function decks (state={}, action){
-	switch(action.type){
-		default:
-			return state
-	}
-}
+import { combineReducers } from 'redux'
+import cards from './cards'
+import decks from './decks'
+import currentDeck from './currentDeck'
 
-export function cards (state={}, action){
-	switch(action.type){
-		default:
-			return state
-	}
-}
 
-export function currentDeckIndex (state=0, action ){
-	switch(action.type){
-		default:
-			return state
-	}
-}
+
+
+
+const rootReducer  = combineReducers({
+	cards,
+	decks,
+	currentDeck,
+})
+
+export default rootReducer
