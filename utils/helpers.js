@@ -5,7 +5,7 @@
 import React from 'react'
 import { View, StyleSheet, AsyncStorage } from 'react-native'
 
-export function getDecks(deck){
+export function setDummyDecks(){
 	const decks = {
 		React: {
 			title: 'React',
@@ -33,4 +33,10 @@ export function getDecks(deck){
 	return typeof deck === 'undefined'
 		? decks
 		: decks[deck]
+}
+
+export function formatDeckResults (results){
+	return results === null
+		? setDummyDecks()
+		: results
 }

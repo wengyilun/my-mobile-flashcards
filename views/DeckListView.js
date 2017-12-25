@@ -5,8 +5,9 @@ import React, {Component } from 'react'
 import {connect} from 'react-redux'
 import { View, Text, StyleSheet } from 'react-native'
 import Deck from '../components/Deck'
-import { getDecks } from '../utils/helpers'
+import { getDecks } from '../utils/api'
 import {purple, white, gray} from '../utils/colors'
+import {receiveDecks } from '../actions'
 
 class DeckListView extends Component{
 	state = {
@@ -16,7 +17,11 @@ class DeckListView extends Component{
 	componentDidMount () {
 		const {dispatch} = this.props
 		
-		
+		getDecks()
+		.then((decks) => dispatch(receiveDecks(decks)))
+		.then(({decks}) => {
+			console.log(decks)
+		})
 	}
 	
 	render(){
