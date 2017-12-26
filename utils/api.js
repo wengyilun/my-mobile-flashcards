@@ -11,31 +11,23 @@ export function reset(){
 	AsyncStorage.clear()
 }
 export function getDecks(){
-//return all of the decks along with their titles, questions, and answers.
-// 	reset()
+	//return all of the decks along with their titles, questions, and answers.
+	// reset()
 	return AsyncStorage.getItem(DECKS_STORAGE_KEY)
-	.then(formatDeckResults)
-	// .then((decks)=>{
-	// 	console.log('getDecks:decks', decks)
-	// })
+	.then(res => JSON.parse(res))
 }
 
 export function saveDeckTitle(title){
 	//take in a single title argument and add it to the decks.
-	console.log('title is: ',title)
+	AsyncStorage.mergeItem(DECKS_STORAGE_KEY,
+		JSON.stringify(title)
+	)
 }
 
 export function addCardToDeck(title, card){
+	console.log('card',card)
 	getDecks().then((decks)=>{
 		const deck = decks[title]
-		
-		// const questions = [...deck['questions'], card]
-		// deck.questions = questions
-		//decks[title] = deck
-		// AsyncStorage.setItem(DECKS_STORAGE_KEY,
-		// 	JSON.stringify({
-		// 		{}
-		// 	}));
 		const result = 	JSON.stringify({
 			...decks,
 			[title]: {
@@ -43,17 +35,8 @@ export function addCardToDeck(title, card){
 				questions:[...deck['questions'], card]
 			}
 		})
-		// AsyncStorage.setItem(DECKS_STORAGE_KEY,
-		// 	result
-		// );
-		console.log('result',result)
-		//
-		// getDecks()
+		AsyncStorage.setItem(DECKS_STORAGE_KEY,
+			result
+		);
 	})
-	// console.log('addCardToDeck-deck', deck)
-	//take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title.
-	// const questions = [...deck['questions'], card]
-	//
-	//
-	//return newDeck
 }

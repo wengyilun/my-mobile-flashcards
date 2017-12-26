@@ -5,8 +5,11 @@ import React, {Component } from 'react'
 import {connect} from 'react-redux'
 import {View, Text, TextInput, StyleSheet} from 'react-native'
 import TextButton from '../components/TextButton'
-import {addCardToDeck} from '../utils/api'
+import {addCardToDeck, saveDeckTitle} from '../utils/api'
 import {purple, white, gray} from "../utils/colors";
+import {addToDecks, addCard} from "../actions";
+
+
 class NewCardView extends Component{
 	static navigationOptions = ({navigation}) => {
 		return {
@@ -18,7 +21,10 @@ class NewCardView extends Component{
 		question: '',
 		answer:''
 	}
-	addCard = ()=>{
+	onAddCard = ()=>{
+		const card = this.state
+		this.props.dispatch(addCard(card))
+		
 		addCardToDeck(this.props.parentDeck, {
 			question: this.state.question,
 			answer: this.state.answer,
@@ -31,6 +37,7 @@ class NewCardView extends Component{
 				<TextInput
 					style={styles.textInput}
 					placeholder="Enter the question"
+					onChangeText={(q) => this.setState({question: q})}
 				/>
 				<TextInput placeholder="Enter the answer"
 						   style={styles.textInput}
@@ -38,7 +45,7 @@ class NewCardView extends Component{
 				/>
 				<TextButton
 					style={styles.textButton}
-					onPress={this.addCard}>
+					onPress={this.onAddCard}>
 					Submit
 				</TextButton>
 			</View>
@@ -93,7 +100,6 @@ function mapStateToProps(state, {navigation}){
 }
 function mapDispatchToProps (dispatch, { navigation }) {
 	// const { entryId } = navigation.state.params
-	
 	return {
 		goBack: () => navigation.goBack(),
 	}

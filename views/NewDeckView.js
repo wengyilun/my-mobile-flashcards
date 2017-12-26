@@ -8,13 +8,28 @@ import {capitalize} from "../utils/helpers";
 import TextButton from '../components/TextButton'
 import {gray, purple, white} from "../utils/colors";
 import {saveDeckTitle} from '../utils/api'
+import {addToDecks} from '../actions'
 
 class NewDeckView extends Component{
 	state={
-		title: ''
+		title: null,
+		questions:[]
+	}
+	reset = ()=>{
+		this.setState({
+			title: '',
+			questions: []
+		})
 	}
 	onAddDeck = ()=>{
-		saveDeckTitle(this.state.title)
+		const key = this.state.title
+		const deck = this.state
+		this.props.dispatch(addToDecks({[key]: deck}))
+		
+		saveDeckTitle({[key]: deck})
+		
+		this.reset()
+		this.props.goBack()
 	}
 	render(){
 		return(
@@ -65,4 +80,11 @@ const styles = StyleSheet.create({
 		textAlign: "center"
 	}
 })
-export default connect()(NewDeckView)
+
+function mapDispatchToProps (dispatch, { navigation }) {
+	// const { entryId } = navigation.state.params
+	return {
+		goBack: () => navigation.goBack(),
+	}
+}
+export default connect(mapDispatchToProps)(NewDeckView)

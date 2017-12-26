@@ -33,12 +33,14 @@ export function setDummyDecks(deck){
 			]
 		},
 	}
-	return typeof deck === 'undefined'
-		? decks
-		: decks[deck]
+	// return typeof deck === 'undefined'
+	// 	? decks
+	// 	: decks[deck]
+	return decks
 }
 
 export function formatDeckResults (results){
+	console.log('result:',results)
 	return results === null
 		? setDummyDecks()
 		: results
