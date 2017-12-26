@@ -4,6 +4,9 @@
 
 import React from 'react'
 import { View, StyleSheet, AsyncStorage } from 'react-native'
+export function capitalize(str){
+	return str.charAt(0).toUpperCase() + str.slice(1)
+}
 
 export function setDummyDecks(deck){
 	const decks = {
