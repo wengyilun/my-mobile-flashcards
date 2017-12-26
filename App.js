@@ -21,12 +21,12 @@ const Tabs = TabNavigator({
         tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
       }
   },
-	NewDeckView:{
-      screen: NewDeckView,
-      navigationOptions: {
-          tabBarLabel: 'NEW DECK',
-          tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
-      }
+  NewDeckView:{
+	  screen: NewDeckView,
+	  navigationOptions: {
+		  tabBarLabel: 'NEW DECK',
+		  tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+	  }
   }
 }, {
       navigationOptions:{
@@ -90,8 +90,8 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(rootReducer)}>
-          <View style={{flex: 1}}>
-            <MainNavigator/>
+          <View style={styles.container}>
+            <MainNavigator />
           </View>
       </Provider>
     );
@@ -101,8 +101,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 40
+    marginTop: 30
   },
 });

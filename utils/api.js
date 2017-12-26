@@ -22,6 +22,7 @@ export function getDecks(){
 
 export function saveDeckTitle(title){
 	//take in a single title argument and add it to the decks.
+	console.log('title is: ',title)
 }
 
 export function addCardToDeck(title, card){

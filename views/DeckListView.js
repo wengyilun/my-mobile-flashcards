@@ -47,7 +47,7 @@ class DeckListView extends Component{
 		}
 		return(
 			<ScrollView style={styles.container}>
-				<Text style={[styles.center, {fontSize: 30}]}>DECKS</Text>
+				<Text style={{textAlign:'center', fontSize: 30}}>DECKS</Text>
 				{Object.keys(decks).map((deck) =>
 					<TouchableOpacity
 						onPress={() => this.props.navigation.navigate(
@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 	},
 	center: {
-		alignItems: 'center',
-		justifyContent: 'center',
+		textAlign:'center'
 	},
 })
 function mapStateToProps (state) {
