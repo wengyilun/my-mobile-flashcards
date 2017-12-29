@@ -27,17 +27,17 @@ export function saveDeckTitle(title){
 export function addCardToDeck(title, card){
 	console.log('card',card)
 	console.log('title',title)
-	// getDecks().then((decks)=>{
-	// 	const deck = decks[title]
-	// 	const result = 	JSON.stringify({
-	// 		...decks,
-	// 		[title]: {
-	// 			...deck,
-	// 			questions:[...deck['questions'], card]
-	// 		}
-	// 	})
-	// 	AsyncStorage.setItem(DECKS_STORAGE_KEY,
-	// 		result
-	// 	);
-	// })
+	getDecks().then((decks)=>{
+		const deck = decks[title]
+		const result = 	JSON.stringify({
+			...decks,
+			[title]: {
+				...deck,
+				questions:[...deck['questions'], card]
+			}
+		})
+		AsyncStorage.setItem(DECKS_STORAGE_KEY,
+			result
+		);
+	})
 }

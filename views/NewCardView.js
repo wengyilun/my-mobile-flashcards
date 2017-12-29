@@ -23,13 +23,13 @@ class NewCardView extends Component{
 	onAddCard = ()=>{
 		const card = this.state
 		this.props.dispatch(addCard(this.props.parentDeck, card))
-		//
-		// addCardToDeck(this.props.parentDeck, {
-		// 	question: this.state.question,
-		// 	answer: this.state.answer,
-		// })
-		// // this.props.goBack()
-		// this.props.navigation.goBack()
+
+		addCardToDeck(this.props.parentDeck, {
+			question: this.state.question,
+			answer: this.state.answer,
+		})
+		// this.props.goBack()
+		this.props.navigation.goBack()
 	}
 	render(){
 		return(
