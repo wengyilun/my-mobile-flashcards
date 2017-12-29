@@ -26,15 +26,17 @@ export default function decks (state={}, action){
 		   return state.filter((deck)=> (deck.title !== action.deck.title))
 		
 		case ADD_CARD:
-			const {card} = action
-			return{
+			const {deck, card} = action
+			console.log('card',card)
+			console.log('deck', deck)
+			return {
 			...state,
-			[card.title]:
+			[deck]:
 				{
-					...[card.title],
-					"questions": [...[card.title]["questions"], card]
+					...state[deck],
+					"questions": [...state[deck]["questions"], card]
 				}
-		}
+			}
 		
 		default:
 			return state

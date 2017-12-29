@@ -9,7 +9,6 @@ import {addCardToDeck, saveDeckTitle} from '../utils/api'
 import {purple, white, gray} from "../utils/colors";
 import {addToDecks, addCard} from "../actions";
 
-
 class NewCardView extends Component{
 	static navigationOptions = ({navigation}) => {
 		return {
@@ -23,13 +22,14 @@ class NewCardView extends Component{
 	}
 	onAddCard = ()=>{
 		const card = this.state
-		this.props.dispatch(addCard(card))
-		
-		addCardToDeck(this.props.parentDeck, {
-			question: this.state.question,
-			answer: this.state.answer,
-		})
-		this.props.goBack()
+		this.props.dispatch(addCard(this.props.parentDeck, card))
+		//
+		// addCardToDeck(this.props.parentDeck, {
+		// 	question: this.state.question,
+		// 	answer: this.state.answer,
+		// })
+		// // this.props.goBack()
+		// this.props.navigation.goBack()
 	}
 	render(){
 		return(
@@ -98,11 +98,12 @@ function mapStateToProps(state, {navigation}){
 		questions: state.decks[parentDeck].questions
 	}
 }
-function mapDispatchToProps (dispatch, { navigation }) {
-	// const { entryId } = navigation.state.params
-	return {
-		goBack: () => navigation.goBack(),
-	}
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewCardView)
+// function mapDispatchToProps (dispatch, { navigation }) {
+// 	// const { entryId } = navigation.state.params
+// 	return {
+// 		goBack: () => navigation.goBack(),
+// 	}
+//}
+
+export default connect(mapStateToProps)(NewCardView)

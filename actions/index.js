@@ -29,9 +29,10 @@ export function removeDeck (deck){
 }
 
 // CARD
-export function addCard (card){
+export function addCard (deck, card){
 	return {
 		type: ADD_CARD,
+		deck,
 		card
 	}
 }
