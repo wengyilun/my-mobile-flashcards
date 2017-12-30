@@ -12,7 +12,7 @@ export function reset(){
 }
 export function getDecks(){
 	//return all of the decks along with their titles, questions, and answers.
-	// reset()
+	reset()
 	return AsyncStorage.getItem(DECKS_STORAGE_KEY)
 	.then(res => JSON.parse(res))
 }
@@ -33,7 +33,8 @@ export function addCardToDeck(title, card){
 			...decks,
 			[title]: {
 				...deck,
-				questions:[...deck['questions'], card]
+				questions:[...deck['questions'], card],
+				
 			}
 		})
 		AsyncStorage.setItem(DECKS_STORAGE_KEY,

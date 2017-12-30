@@ -52,9 +52,10 @@ class DeckListView extends Component{
 				<Text style={{textAlign:'center', fontSize: 30}}>DECKS</Text>
 				{Object.keys(decks).map((deck) =>
 					<TouchableOpacity
+						key={deck}
 						onPress={() => this.props.navigation.navigate(
 						'DeckDetailView', {entryId: deck})}>
-						<Deck key={deck} title={decks[deck].title} questions={decks[deck].questions} />
+						<Deck title={decks[deck].title} questions={decks[deck].questions} />
 					</TouchableOpacity>
 					)}
 

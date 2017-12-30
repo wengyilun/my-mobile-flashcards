@@ -8,6 +8,7 @@ export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const REMOVE_DECK = 'REMOVE_DECK'
 export const ADD_CARD = 'ADD_CARD'
+export const UPDATE_ANSWER = 'UPDATE_ANSWER'
 
 export function receiveDecks (decks){
 	return {
@@ -34,5 +35,15 @@ export function addCard (deck, card){
 		type: ADD_CARD,
 		deck,
 		card
+	}
+}
+// QUIZ
+export function updateAnswer(deck, answer){
+	console.log('updateAnswer', deck, answer)
+	
+	return{
+		type: UPDATE_ANSWER,
+		deck,
+		answer
 	}
 }

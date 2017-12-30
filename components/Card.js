@@ -7,8 +7,10 @@ import {purple, white} from '../utils/colors'
 import TextButton from './TextButton'
 import {pink, gray} from '../utils/colors'
 import {capitalize} from '../utils/helpers'
+import {connect} from "react-redux"
+import {updateAnswer} from "../actions"
 
-export default class Card extends React.Component {
+class Card extends React.Component {
 	state ={
 		side: 'question',
 	}
@@ -21,11 +23,10 @@ export default class Card extends React.Component {
 		}
 		console.log(this.state.side)
 	}
-	markCorrect = ()=> {
-	
-	}
-	markIncorrect = ()=> {
-	
+	updateAnswer = (result)=> {
+		
+		console.log('updateAnswer',this.props.id)
+		this.props.dispatch(updateAnswer(this.props.deck, {[this.props.id]: result}))
 	}
 	
 	render(){
@@ -44,10 +45,10 @@ export default class Card extends React.Component {
 					onPress={this.flipCard}>{capitalize(side)}</TextButton>
 				<TextButton
 					style={styles.textButton}
-					onPress={this.markCorrect()}>Correct</TextButton>
+					onPress={(e)=>this.updateAnswer('correct')}>Correct</TextButton>
 				<TextButton
 					style={styles.textButton}
-					onPress={this.markIncorrect()}>Incorrect</TextButton>
+					onPress={(e)=>this.updateAnswer('incorrect')}>Incorrect</TextButton>
 			</View>
 		)
 	}
@@ -81,3 +82,4 @@ const styles = StyleSheet.create({
 		textAlign: "center"
 	}
 })
+export default connect()(Card)

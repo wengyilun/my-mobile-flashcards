@@ -11,7 +11,7 @@ export default function Deck ({title, questions}){
 	return (
 		<View onclick={this.open} style={[styles.container, styles.center]}>
 			<Text style={{fontSize: 30}}>{title}</Text>
-			<Text style={{fontSize: 16, color: gray, marginTop: 6}}> {questions.length} cards</Text>
+			<Text style={{fontSize: 16, color: gray, marginTop: 6}}> {questions && questions.length} cards</Text>
 		</View>
 	)
 }

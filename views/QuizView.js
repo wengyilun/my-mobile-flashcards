@@ -21,7 +21,10 @@ class QuizView extends Component{
 		return(
 			<View style={styles.container}>
 				{ this.props.questions.map((q, idx)=>(
-					<Card id={idx}
+					<Card
+						 key={idx}
+						 id={idx}
+						 deck={this.props.parentDeck}
 						 total={this.props.questions.length}
 						 question={q.question}
 						 answer={q.answer}/>

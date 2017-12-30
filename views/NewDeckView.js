@@ -13,12 +13,14 @@ import {addToDecks} from '../actions'
 class NewDeckView extends Component{
 	state={
 		title: null,
-		questions:[]
+		questions:[],
+		answers:{}
 	}
 	reset = ()=>{
 		this.setState({
 			title: '',
-			questions: []
+			questions: [],
+			answers:{}
 		})
 	}
 	onAddDeck = ()=>{
