@@ -33,9 +33,6 @@ export function setDummyDecks(deck){
 			]
 		},
 	}
-	// return typeof deck === 'undefined'
-	// 	? decks
-	// 	: decks[deck]
 	return decks
 }
 
@@ -44,4 +41,14 @@ export function formatDeckResults (results){
 	return results === null
 		? setDummyDecks()
 		: results
+}
+
+export function getDateKey(){
+	const date = new Date();
+	const dd = date.getDate();
+	const mm = date.getMonth()+1;
+	const yyyy = date.getFullYear();
+	const today = mm +  dd + yyyy;
+
+	return today
 }

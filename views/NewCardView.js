@@ -28,7 +28,6 @@ class NewCardView extends Component{
 			question: this.state.question,
 			answer: this.state.answer,
 		})
-		// this.props.goBack()
 		this.props.navigation.goBack()
 	}
 	render(){
@@ -98,12 +97,5 @@ function mapStateToProps(state, {navigation}){
 		questions: state.decks[parentDeck].questions
 	}
 }
-
-// function mapDispatchToProps (dispatch, { navigation }) {
-// 	// const { entryId } = navigation.state.params
-// 	return {
-// 		goBack: () => navigation.goBack(),
-// 	}
-//}
 
 export default connect(mapStateToProps)(NewCardView)

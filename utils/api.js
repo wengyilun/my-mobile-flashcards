@@ -2,7 +2,8 @@
  * Created by mbp on 24/12/2017.
  */
 import {AsyncStorage} from 'react-native'
-import {formatDeckResults} from './helpers'
+import {formatDeckResults, getDateKey} from './helpers'
+
 export const DECKS_STORAGE_KEY = "Flashcards:decks"
 
 export function reset(){
@@ -12,7 +13,7 @@ export function reset(){
 }
 export function getDecks(){
 	//return all of the decks along with their titles, questions, and answers.
-	reset()
+	// reset()
 	return AsyncStorage.getItem(DECKS_STORAGE_KEY)
 	.then(res => JSON.parse(res))
 }
@@ -25,8 +26,6 @@ export function saveDeckTitle(title){
 }
 
 export function addCardToDeck(title, card){
-	console.log('card',card)
-	console.log('title',title)
 	getDecks().then((decks)=>{
 		const deck = decks[title]
 		const result = 	JSON.stringify({
@@ -36,6 +35,24 @@ export function addCardToDeck(title, card){
 				questions:[...deck['questions'], card],
 				
 			}
+		})
+		AsyncStorage.setItem(DECKS_STORAGE_KEY,
+			result
+		);
+	})
+}
+
+export function saveResult(title, answer){
+	const dateKey = getDateKey()
+	getDecks().then((decks)=>{
+		const deck = decks[title]
+		const result = 	JSON.stringify({
+			...decks,
+			[title]: {
+				...deck,
+				answers:[...deck["answers"][dateKey], answer],
+				
+	}
 		})
 		AsyncStorage.setItem(DECKS_STORAGE_KEY,
 			result

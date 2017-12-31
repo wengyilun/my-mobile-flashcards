@@ -2,7 +2,7 @@
  * Created by mbp on 24/12/2017.
  */
 import { combineReducers } from 'redux'
-import cards from './cards'
+import answers from './answers'
 import decks from './decks'
 import currentDeck from './currentDeck'
 
@@ -11,7 +11,7 @@ import currentDeck from './currentDeck'
 
 
 const rootReducer  = combineReducers({
-	cards,
+	answers,
 	decks,
 	currentDeck,
 })

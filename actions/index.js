@@ -8,7 +8,8 @@ export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const REMOVE_DECK = 'REMOVE_DECK'
 export const ADD_CARD = 'ADD_CARD'
-export const UPDATE_ANSWER = 'UPDATE_ANSWER'
+export const ADD_ANSWER = 'ADD_ANSWER'
+export const CLEAR_ANSWER = 'CLEAR_ANSWER'
 
 export function receiveDecks (decks){
 	return {
@@ -38,12 +39,20 @@ export function addCard (deck, card){
 	}
 }
 // QUIZ
-export function updateAnswer(deck, answer){
-	console.log('updateAnswer', deck, answer)
+export function updateAnswer(deck, id, answer){
+	console.log('updateAnswer', deck, id, answer)
 	
 	return{
-		type: UPDATE_ANSWER,
+		type: ADD_ANSWER,
 		deck,
+		id,
 		answer
+	}
+}
+export function clearAnswer(title, dateKey){
+	return{
+		type: CLEAR_ANSWER,
+		title,
+		dateKey
 	}
 }

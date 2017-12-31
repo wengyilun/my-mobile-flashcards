@@ -9,6 +9,7 @@ import {pink, gray} from '../utils/colors'
 import {capitalize} from '../utils/helpers'
 import {connect} from "react-redux"
 import {updateAnswer} from "../actions"
+import {saveResult} from "../utils/api"
 
 class Card extends React.Component {
 	state ={
@@ -24,9 +25,10 @@ class Card extends React.Component {
 		console.log(this.state.side)
 	}
 	updateAnswer = (result)=> {
-		
-		console.log('updateAnswer',this.props.id)
-		this.props.dispatch(updateAnswer(this.props.deck, {[this.props.id]: result}))
+		this.props.nextCard()
+		if(this.props.id <= this.props.total - 1){
+			this.props.dispatch(updateAnswer(this.props.deck, this.props.id, result))
+		}
 	}
 	
 	render(){
@@ -45,7 +47,8 @@ class Card extends React.Component {
 					onPress={this.flipCard}>{capitalize(side)}</TextButton>
 				<TextButton
 					style={styles.textButton}
-					onPress={(e)=>this.updateAnswer('correct')}>Correct</TextButton>
+					onPress={(e)=>this.updateAnswer('correct')}
+					>Correct</TextButton>
 				<TextButton
 					style={styles.textButton}
 					onPress={(e)=>this.updateAnswer('incorrect')}>Incorrect</TextButton>
