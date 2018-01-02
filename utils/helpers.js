@@ -46,16 +46,6 @@ export function formatDeckResults (results){
 		: results
 }
 
-export function getDateKey(){
-	const date = new Date();
-	const dd = date.getDate();
-	const mm = date.getMonth()+1;
-	const yyyy = date.getFullYear();
-	const today = mm +  dd + yyyy;
-
-	return today
-}
-
 export function timeToString (time = Date.now()) {
 	const date = new Date(time)
 	const todayUTC = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
