@@ -2,13 +2,13 @@ import {ADD_ANSWER} from "../actions";
 /**
  * Created by mbp on 24/12/2017.
  */
-import {getDateKey} from '../utils/helpers'
+import {timeToString} from '../utils/helpers'
 
 export default function answers (state={}, action){
 	switch(action.type){
 		case ADD_ANSWER:
 			const { id, answer, deck} = action
-			const date = getDateKey()
+			const date = timeToString()
 			const deckTitle =  deck.title
 			const deckObj = state[deck.title] || {};
 			const dateArray = deckObj[date] || {};

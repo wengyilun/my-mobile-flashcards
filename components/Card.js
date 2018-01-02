@@ -9,7 +9,7 @@ import {pink, gray} from '../utils/colors'
 import {capitalize} from '../utils/helpers'
 import {connect} from "react-redux"
 import {updateAnswer} from "../actions"
-import {saveResult} from "../utils/api"
+import {addCardToDeck,  saveAnswer} from "../utils/api"
 
 class Card extends React.Component {
 	state ={
@@ -24,11 +24,13 @@ class Card extends React.Component {
 		}
 		console.log(this.state.side)
 	}
-	updateAnswer = (result)=> {
+	updateAnswer = (answer)=> {
 		this.props.nextCard()
 		if(this.props.id <= this.props.total - 1){
-			this.props.dispatch(updateAnswer(this.props.deck, this.props.id, result))
+			this.props.dispatch(updateAnswer(this.props.deck, this.props.id, answer))
 		}
+		//debugger
+		saveAnswer(this.props.deck, this.props.id, answer)
 	}
 	
 	render(){

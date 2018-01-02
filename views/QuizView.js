@@ -9,10 +9,9 @@ import {connect} from 'react-redux'
 import {View, Text, StyleSheet} from 'react-native'
 import Card from '../components/Card'
 import {purple, white} from "../utils/colors";
-import {getDateKey} from "../utils/helpers";
+import {timeToString, clearLocalNotification, setLocalNotification} from "../utils/helpers";
 import TextButton from "../components/TextButton";
 import {clearAnswer} from '../actions'
-
 class QuizView extends Component{
 	static navigationOptions = ({navigation}) => {
 		return {
@@ -33,11 +32,13 @@ class QuizView extends Component{
 			this.setState(() => ({  currentIndex: idx }))
 		}else{
 			this.setState(() => ({theEnd: true}))
+			clearLocalNotification()
+				.then(setLocalNotification)
 		}
 	}
 	getRate(){
 		// Calculate the rate of correct answer
-		const dateKey = getDateKey()
+		const dateKey = timeToString()
 		const result = this.props.answers[this.props.parentDeck]
 		const date = result[dateKey]
 		const correctCount =  Object.keys(date).map((key) =>{
@@ -51,7 +52,7 @@ class QuizView extends Component{
 	}
 	startOver = ()=>{
 		// Restart the quiz
-		clearAnswer(this.props.parentDeck, getDateKey())
+		clearAnswer(this.props.parentDeck, timeToString())
 		this.setState(() =>
 			({
 				currentIndex:0,

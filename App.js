@@ -10,22 +10,23 @@ import NewDeckView from './views/NewDeckView'
 import DeckDetailView from './views/DeckDetailView'
 import NewCardView from './views/NewCardView'
 import QuizView from './views/QuizView'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import {purple, white} from './utils/colors'
+import {setLocalNotification} from "./utils/helpers";
 
 const Tabs = TabNavigator({
   DeckListView:{
       screen: DeckListView,
       navigationOptions: {
         tabBarLabel: 'DECKS',
-        tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+        tabBarIcon: ({tintColor}) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />
       }
   },
   NewDeckView:{
 	  screen: NewDeckView,
 	  navigationOptions: {
 		  tabBarLabel: 'NEW DECK',
-		  tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+		  tabBarIcon: ({tintColor}) => <MaterialCommunityIcons name='folder-plus' size={30} color={tintColor} />
 	  }
   }
 }, {
@@ -87,6 +88,10 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
+	componentDidMount(){
+		setLocalNotification()
+	}
+
   render() {
     return (
       <Provider store={createStore(rootReducer)}>

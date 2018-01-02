@@ -8,7 +8,7 @@ import {white, purple} from '../utils/colors'
 import TextButton from '../components/TextButton'
 import Deck from '../components/Deck'
 import {clearAnswer} from "../actions";
-import {getDateKey} from "../utils/helpers";
+import {timeToString} from "../utils/helpers";
 
 class DeckDetailView extends Component{
 	static navigationOptions = ({navigation}) => {
@@ -27,7 +27,7 @@ class DeckDetailView extends Component{
 	startQuiz = ()=> {
 		this.props.navigation.navigate(
 			'QuizView', {parentDeck: this.props.entryId})
-		clearAnswer(this.props.entryId, getDateKey())
+		clearAnswer(this.props.entryId, timeToString())
 	}
 	render(){
 		const {title, questions} = this.props

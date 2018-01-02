@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 	},
 })
 function mapStateToProps (state) {
-	console.log('deck hanged decks:',state.decks)
+	//console.log('deck hanged decks:',state.decks)
 	return {
 		decks: state.decks
 	}
