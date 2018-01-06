@@ -18,11 +18,7 @@ class DeckListView extends Component{
 	fetchDecks(){
 		const {dispatch} = this.props
 		getDecks().then((res) => {
-			// const obj = JSON.parse(res)
-			console.log('JSON.parse(decks):',res)
 		    dispatch(receiveDecks(res))
-		// .then(({decks}) => {
-		// 	console.log('componentDidMount:decks',decks)
 		})
 		.then(() => this.setState(() => ({ready: true})))
 		.catch((error) => {
@@ -34,11 +30,11 @@ class DeckListView extends Component{
 		this.fetchDecks()
 	}
 	
-	componentWillReceiveProps(nextProps){
-		// if(this.props.decks && this.props.decks !== nextProps){
-		// 	this.fetchDecks()
-		// }
-	}
+	// componentWillReceiveProps(nextProps){
+	// 	if(this.props.decks && this.props.decks !== nextProps){
+	// 		this.fetchDecks()
+	// 	}
+	// }
 	
 	render(){
 		const {decks} = this.props

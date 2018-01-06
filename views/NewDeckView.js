@@ -22,25 +22,27 @@ class NewDeckView extends Component{
 			questions: [],
 			answers:{}
 		})
+		this.textInput.clear()
 	}
 	onAddDeck = ()=>{
 		const key = this.state.title
 		const deck = this.state
+	
 		this.props.dispatch(addToDecks({[key]: deck}))
-		
 		saveDeckTitle({[key]: deck})
-		
+		this.props.navigation.navigate('DeckDetailView', {entryId: key })
 		this.reset()
-		this.props.goBack()
+
 	}
 	render(){
 		return(
 			<View style={[styles.container]}>
-				<Text style={{textAlign:'center', fontSize: 30, marginBottom: 20}}>NEW DECK</Text>
+				<Text  style={{textAlign:'center', fontSize: 30, marginBottom: 20}}>NEW DECK</Text>
 				<Text style={{textAlign:'center'}}>What is the title of your new deck?</Text>
 				<TextInput
+					ref={(input) => {this.textInput = input}}
 					style={styles.textInput}
-					onChangeText={(input) => this.setState({title: input})}/>
+					onChangeText={(input) => this.setState({title: input.trim()})}/>
 				<TextButton
 					style={styles.textButton}
 					onPress={this.onAddDeck}>Submit</TextButton>

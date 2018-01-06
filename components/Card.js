@@ -22,7 +22,6 @@ class Card extends React.Component {
 		}else{
 			this.setState({side:'question'})
 		}
-		console.log(this.state.side)
 	}
 	updateAnswer = (answer)=> {
 		this.props.nextCard()

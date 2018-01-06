@@ -58,12 +58,14 @@ const MainNavigator = StackNavigator({
     },
     DeckDetailView:{
 		screen: DeckDetailView,
-		navigationOptions: {
+		navigationOptions:({navigation}) => ({
 			headerTintColor: white,
 			headerStyle:{
 				backgroundColor: purple
 			},
-		}
+			// path: 'deck/:title',
+			// title: `${navigation.state.params.title}`
+		})
     },
     QuizView:{
 		screen: QuizView,
